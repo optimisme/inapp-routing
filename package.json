@@ -1,0 +1,11 @@
+{
+  "name": "node-app",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  }
+}
