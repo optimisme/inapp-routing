@@ -89,7 +89,7 @@ class ObjRouting {
         // Set and show new route
         this.route = '/' + arr[position]
         refRoute = document.querySelector(ObjRouteScreen.name + '#' + this.route.substr(1))
-        console.log(this.route, this.base)
+        console.log(arr, position, this.route, this.base)
         refRoute.style.display = ''
         this.args = arr.splice(position + 1)
         await this.waitNone(refRoute, false)
