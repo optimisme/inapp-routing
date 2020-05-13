@@ -36,6 +36,8 @@ The id of each 'root-screen' element matches its URL when shown
 
 By default, the '/' route will show the first 'root-screen' defined (use id="home" as the first 'route-screen' is recommended)
 
+If the routes are relative to a base, define the 'routing.base' like in the example (where it is used to make it compatible with github pages)
+
 Finally, 'route-screen' elements can define two functions:
 
 `<route-screen id='home' onshow='console.log(this.args)'>Home screen contents</route-screen>`
