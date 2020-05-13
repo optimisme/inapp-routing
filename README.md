@@ -38,6 +38,8 @@ By default, the '/' route will show the first 'root-screen' defined (use id="hom
 
 If the routes are relative to a base, define the 'routing.base' like in the example (where it is used to make it compatible with github pages and sets all routes after '/html5-routing')
 
+**NOTE**: Do not set 'display: none' for 'route-screen' as a default value, or the library will hang
+
 Finally, 'route-screen' elements can define two functions:
 
 `<route-screen id='home' onshow='console.log(this.args)'>Home screen contents</route-screen>`
