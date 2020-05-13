@@ -14,7 +14,7 @@ Users can navigate with 'back' and 'forward' buttons
 
 Programmers can use 'a' tags to change to another screen: 
 
-`'&lt;a href="/route"&gt;'`
+`'<a href="/route">'`
 
 Or, programmers can change to another screen from javascript with 'routing.changeTo('/list')'
 
@@ -22,11 +22,11 @@ Or, programmers can change to another screen from javascript with 'routing.chang
 
 Add this library with:
 
-`&lt;script src='/routing.js'&gt;&lt;/script&gt;`
+`<script src='/routing.js'></script>`
 
 This script will add one custom element named 'route-screen' that you can use like:
 
-`&lt;route-screen id='home'&gt;Home screen contents&lt;/route-screen&gt;`
+`<route-screen id='home'>Home screen contents</route-screen>`
 
 Each 'route-screen' element contains the html source of one navigation screen of the application
 
@@ -38,19 +38,19 @@ By default, the '/' route will show the first 'root-screen' defined (use id="hom
 
 Finally, 'route-screen' elements can define two functions:
 
-`&lt;route-screen id='home' onshow='console.log(this.args)'&gt;Home screen contents&lt;/route-screen&gt;`
+`<route-screen id='home' onshow='console.log(this.args)'>Home screen contents</route-screen>`
 
 'onshow' will be called after that 'route' is shown (its 'style.display' property will be set to its default value)
 
 Programmers can get the parameters of the URL with 'this.args', for example when the next link is clicked:
 
-`&lt;a href='/detail/3/A'&gt;Product 3 with config A&lt;/a&gt;`
+`<a href='/detail/3/A'>Product 3 with config A</a>`
 
 - Navigator will set the URL to '/detail/3/A'
-- Section <route-screen id='detail' onshow='loadDetail(this.args)'&gt; will be shown
+- Section <route-screen id='detail' onshow='loadDetail(this.args)'> will be shown
 - loadDetail function will be called with ['3', 'A'] parameters
 
-`&lt;route-screen id='home' onshow='console.log(this.args)'&gt;Home screen contents&lt;/route-screen&gt;`
+`<route-screen id='home' onshow='console.log(this.args)'>Home screen contents</route-screen>`
 
 'onhide' will be called before that 'route' is hidden (its 'style.display' property will be set to 'none')
 
