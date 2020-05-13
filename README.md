@@ -40,18 +40,18 @@ Finally, 'route-screen' elements can define two functions:
 
 `<route-screen id='home' onshow='console.log(this.args)'>Home screen contents</route-screen>`
 
-'onshow' will be called after that 'route' is shown (its 'style.display' property will be set to its default value)
+**'onshow'** will be called after that 'route' is shown (its 'style.display' property will be set to its default value)
 
 Programmers can get the parameters of the URL with 'this.args', for example when the next link is clicked:
 
 `<a href='/detail/3/A'>Product 3 with config A</a>`
 
 - Navigator will set the URL to '/detail/3/A'
-- Section <route-screen id='detail' onshow='loadDetail(this.args)'> will be shown
+- Section `<route-screen id='detail' onshow='loadDetail(this.args)'>` will be shown
 - loadDetail function will be called with ['3', 'A'] parameters
 
 `<route-screen id='home' onshow='console.log(this.args)'>Home screen contents</route-screen>`
 
-'onhide' will be called before that 'route' is hidden (its 'style.display' property will be set to 'none')
+**'onhide'** will be called before that 'route' is hidden (its 'style.display' property will be set to 'none')
 
 These functions can return a 'Promise' and the library will wait until the call is resolved (see the animated example).
