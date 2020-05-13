@@ -72,7 +72,8 @@ class ObjRouting {
     // Hide old route and show the new one
     async showRoute (path) {
         let arr = path.split('/'),
-            refRoute = undefined
+            refRoute = undefined,
+            position = this.base.split('/').length
 
         // Hide old route
         refRoute = document.querySelector(ObjRouteScreen.name + '#' + this.route.substr(1))
@@ -86,10 +87,10 @@ class ObjRouting {
         document.body.scrollTop = 0
 
         // Set and show new route
-        this.route = '/' + arr[1]
+        this.route = '/' + arr[position]
         refRoute = document.querySelector(ObjRouteScreen.name + '#' + this.route.substr(1))
         refRoute.style.display = ''
-        this.args = arr.splice(2)
+        this.args = arr.splice(position + 1)
         await this.waitNone(refRoute, false)
         if (refRoute.getAttribute('onshow')) {
             await eval(refRoute.getAttribute('onshow'))
