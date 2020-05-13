@@ -14,6 +14,8 @@ class ObjRouting {
         this.route = this.defaultRoute
         this.args = []
         this.handler = this.init.bind(this)
+        this.base = document.location.origin
+        this.basePosition = 1
 
         window.addEventListener('load', () => { this.init() })
         window.addEventListener('popstate', (e) => { this.changeTo(e.state.html, true); return false })
@@ -22,7 +24,7 @@ class ObjRouting {
             if (element.tagName == 'A') {
               e.preventDefault()
               e.stopPropagation()
-              this.changeTo(element.href.replace(document.location.origin, ''))
+              this.changeTo(element.href.replace(this.base, ''))
               return false
             }
         })
@@ -30,7 +32,7 @@ class ObjRouting {
 
     // Change to route defined by 'url' (if necessary)
     init () {
-        let path = document.URL.replace(document.location.origin, ''),
+        let path = document.URL.replace(this.base, ''),
             cnt = 0,
             routes = document.querySelectorAll(ObjRouteScreen.name)
 
@@ -42,6 +44,11 @@ class ObjRouting {
         }
 
         this.changeTo(path)
+    }
+    
+    set base (url) {
+        this.base = document.location.origin + url
+        this.basePosition = url.split('/').length
     }
 
     // Change route
@@ -85,10 +92,10 @@ class ObjRouting {
         document.body.scrollTop = 0
 
         // Set and show new route
-        this.route = '/' + arr[1]
+        this.route = '/' + arr[this.basePosition]
         refRoute = document.querySelector(ObjRouteScreen.name + '#' + this.route.substr(1))
         refRoute.style.display = ''
-        this.args = arr.splice(2)
+        this.args = arr.splice(this.basePosition + 1)
         await this.waitNone(refRoute, false)
         if (refRoute.getAttribute('onshow')) {
             await eval(refRoute.getAttribute('onshow'))
