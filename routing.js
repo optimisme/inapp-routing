@@ -74,7 +74,7 @@ class ObjRouting {
         let arr = path.split('/'),
             refRoute = undefined,
             position = this.base.split('/').length
-console.log(this.route, this.base)
+
         // Hide old route
         refRoute = document.querySelector(ObjRouteScreen.name + '#' + this.route.substr(1))
         if (refRoute.getAttribute('onhide')) {
@@ -89,6 +89,7 @@ console.log(this.route, this.base)
         // Set and show new route
         this.route = '/' + arr[position]
         refRoute = document.querySelector(ObjRouteScreen.name + '#' + this.route.substr(1))
+        console.log(this.route, this.base)
         refRoute.style.display = ''
         this.args = arr.splice(position + 1)
         await this.waitNone(refRoute, false)
