@@ -17,7 +17,7 @@ class ObjRouting {
         this.base = ''
 
         window.addEventListener('load', () => { this.init() })
-        window.addEventListener('popstate', (e) => { this.changeTo(e.state.html, true); return false })
+        window.addEventListener('popstate', (e) => { this.changeTo(e.state.html.replace(this.base, ''), true); return false })
         document.addEventListener('click',  (e) => {
             let element = e.target || e.srcElement
             if (element.tagName == 'A') {
