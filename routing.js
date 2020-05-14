@@ -2,6 +2,7 @@ class ObjRouting {
 
     constructor () {
         this.tagName = 'x-route'
+        this.defaultRoute = '/home'
         this.route = undefined
         this.args = []
         this.handler = this.init.bind(this)
@@ -31,7 +32,8 @@ class ObjRouting {
 
         window.removeEventListener('load', this.handler)
 
-        this.route = routes[0].getAttribute('path')
+        this.defaultRoute = routes[0].getAttribute('path')
+        this.route = this.defaultRoute
         for (cnt = 0; cnt < routes.length; cnt = cnt + 1) {
             routes[cnt].style.display = 'none'
         }
@@ -56,6 +58,9 @@ class ObjRouting {
         }
         if (hashPos !== -1) {
             cleanPath = path.substr(0, hashPos)
+        }
+        if (cleanPath === '/') {
+            cleanPath = this.defaultRoute
         }
 
         // Show route changes
