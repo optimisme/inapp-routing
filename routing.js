@@ -2,8 +2,7 @@ class ObjRouting {
 
     constructor () {
         this.tagName = 'x-route'
-        this.defaultRoute = '/home'
-        this.route = this.defaultRoute
+        this.route = undefined
         this.args = []
         this.handler = this.init.bind(this)
 
@@ -32,7 +31,7 @@ class ObjRouting {
 
         window.removeEventListener('load', this.handler)
 
-        this.defaultRoute = routes[0].getAttribute('path')
+        this.route = routes[0]
         for (cnt = 0; cnt < routes.length; cnt = cnt + 1) {
             routes[cnt].style.display = 'none'
         }
@@ -65,8 +64,7 @@ class ObjRouting {
 
     // Hide old route and show the new one
     async showRoute (path) {
-        let refRoute = undefined,
-            position = 1
+        let refRoute = undefined
 
         // Hide old route
         refRoute = document.querySelector(this.tagName + '[path="' + this.route + '"]')
