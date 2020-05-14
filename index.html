@@ -29,7 +29,7 @@
                 let path = document.URL,
                     position = path.indexOf('?'),
                     parameters = path.substring(position + 1).split('&'),
-                    json = JSON.pase('{' + parameters.map((v) => { let arr = v.split('='); return '"' + arr[0] + '":"' + arr[1] + '"' }).join(',') + '}')
+                    json = JSON.parse('{' + parameters.map((v) => { let arr = v.split('='); return '"' + arr[0] + '":"' + arr[1] + '"' }).join(',') + '}')
 
                 console.log(json)
                 document.getElementById('parameters').innerHTML = JSON.stringify(json)
