@@ -31,7 +31,7 @@ class ObjRouting {
 
         window.removeEventListener('load', this.handler)
 
-        this.route = routes[0]
+        this.route = routes[0].getAttribute('path')
         for (cnt = 0; cnt < routes.length; cnt = cnt + 1) {
             routes[cnt].style.display = 'none'
         }
