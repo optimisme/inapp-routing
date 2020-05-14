@@ -15,6 +15,7 @@ Users can navigate with 'back' and 'forward' buttons
 Programmers can use 'a' tags to change to another screen or route: 
 
 `'<a href="/home">'`
+
 `'<a href="/html5-route/examples/3">'`
 
 Or, programmers can change to another screen from javascript with 'routing.changeTo("/home")'
@@ -27,7 +28,7 @@ Add this library with:
 
 This script will use the custom element named 'x-route' that you can use like:
 
-`<x-route id='home'>Home screen contents</x-route>`
+`<x-route path='home'>Home screen contents</x-route>`
 
 It is an "HTMLUnknownElement" without any custom definition
 
@@ -45,11 +46,11 @@ By default, the '/' route will show the first 'x-route' defined
 
 Finally, 'x-route' elements can define two attributes with code:
 
-`<x-route id='home' onshow='console.log("Show home")'>Home screen contents</x-route>`
+`<x-route path='home' onshow='console.log("Show home")'>Home screen contents</x-route>`
 
 **'onshow'** source will be called after that 'route' is shown (its 'style.display' property will be set to its default value and then the function is called)
 
-`<x-route id='home' onhide='console.log("Hide home")'>Home screen contents</x-route>`
+`<x-route path='home' onhide='console.log("Hide home")'>Home screen contents</x-route>`
 
 **'onhide'** source will be called before that 'route' is hidden (the function is called, and then its 'style.display' property will be set to 'none')
 
