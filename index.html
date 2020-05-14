@@ -26,7 +26,13 @@
         </style>
         <script>
             function showParameters () {
-                document.getElementById('parameters').innerHTML = document.URL
+                let path = document.URL,
+                    position = path.indexOf('?'),
+                    parameters = path.substring(position + 1).split('&'),
+                    json = parameters.map((v) => { let arr = v.split('='); return JSON.parse('{"' + arr[0] + '":"' + arr[1] + '"}') })
+
+                console.log(parameters)
+                document.getElementById('parameters').innerHTML = JSON.stringify(parameters)
             }
             function animIn () {
                 return new Promise((resolve, reject) => {
