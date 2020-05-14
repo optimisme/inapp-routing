@@ -1,6 +1,8 @@
 # html5-routing
 Micro library to add HTML5 routing capabilities to any website
 
+This library shows or hides <x-route> contents with browser's history depending on the URLs route
+
 ## Example
 https://optimisme.github.io/html5-routing.
 
