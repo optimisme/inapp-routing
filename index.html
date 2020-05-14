@@ -32,7 +32,7 @@
                     json = parameters.map((v) => { let arr = v.split('='); return JSON.parse('{"' + arr[0] + '":"' + arr[1] + '"}') })
 
                 console.log(parameters)
-                document.getElementById('parameters').innerHTML = JSON.stringify(parameters)
+                document.getElementById('parameters').innerHTML = JSON.stringify(json)
             }
             function animIn () {
                 return new Promise((resolve, reject) => {
