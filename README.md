@@ -23,9 +23,9 @@ Also from javascript with 'routing.changeTo("/home")'
 
 ## How to use it
 
-Add this library with:
+Download and this library from your own server:
 
-`<script src='/routing.js'></script>`
+`<script src='routing.js'></script>`
 
 Use the custom element named `<x-route>`:
 
