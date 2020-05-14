@@ -39,6 +39,8 @@ The library automatically handles the window.history states and sets the 'displa
 
 By default, the '/' route will show the first 'x-route' defined
 
+## Attributes 'onshow' and 'onhide'
+
 **NOTE**: Do not set 'display: none' for 'x-route' elements as a default value, or the library will hang
 
 Finally, 'x-route' elements can define two attributes with code:
