@@ -7,7 +7,7 @@ class ObjRouting {
         this.args = []
         this.handler = this.init.bind(this)
 
-        window.addEventListener('load', () => { this.init() })
+        window.addEventListener('load', () => { this.handler })
         window.addEventListener('popstate', (e) => { this.changeTo(e.state.html, true); return false })
         document.addEventListener('click',  (e) => {
             let element = e.target || e.srcElement,
