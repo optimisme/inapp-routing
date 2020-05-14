@@ -46,7 +46,7 @@ class ObjRouting {
     // Change route
     async changeTo (path, fromNavigation) {
         let queryPos = path.indexOf('?'),
-            hashPos = path.indexOf('#'),
+            hashPos = 0,
             cleanPath = path
 
         // Set navigator URL
@@ -58,8 +58,9 @@ class ObjRouting {
         if (queryPos !== -1) {
             cleanPath = path.substr(0, queryPos)
         }
+        hashPos = cleanPath.indexOf('#')
         if (hashPos !== -1) {
-            cleanPath = path.substr(0, hashPos)
+            cleanPath = cleanPath.substr(0, hashPos)
         }
         if (cleanPath === '/') {
             cleanPath = this.defaultRoute
