@@ -85,6 +85,7 @@ class ObjRouting {
         document.body.scrollTop = 0
 
         // Set and show new route
+        this.route = path
         refRoute = document.querySelector(this.tagName + '[path="' + path + '"]')
         refRoute.style.display = ''
         await this.waitNone(refRoute, false)
