@@ -55,14 +55,8 @@ class ObjRouting {
         if (queryPos !== -1) {
             cleanPath = path.substr(0, queryPos)
         }
-        console.log(1, cleanPath)
         if (hashPos !== -1) {
             cleanPath = path.substr(0, hashPos)
-        }
-        console.log(2, cleanPath)
-        // Get 'home' path if necessary
-        if (cleanPath === '/') {
-            cleanPath = this.defaultRoute
         }
 
         // Show route changes
