@@ -6,6 +6,7 @@ class ObjRouting {
         this.route = this.defaultRoute
         this.args = []
         this.handler = this.init.bind(this)
+        this.startPosition = 0
 
         window.addEventListener('load', () => { this.init() })
         window.addEventListener('popstate', (e) => { this.changeTo(e.state.html, true); return false })
@@ -68,7 +69,7 @@ class ObjRouting {
     async showRoute (path) {
         let arr = path.split('/'),
             refRoute = undefined,
-            position = 2
+            position = this.startPosition + 1
 
         // Hide old route
         refRoute = document.querySelector(this.name + '#' + this.route.substr(1))
