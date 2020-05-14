@@ -50,25 +50,25 @@
             }
         </script>
         <nav>
-            <a href='/html5-routing/'>Home screen</a>
-            <a href='/html5-routing/example/3/B#top'>Example screen with long path and #</a>
-            <a href='/html5-routing/query?a=3&b=2'>Example screen with query parameters</a>
-            <a href='/html5-routing/animated'>Animated screen</a>
+            <a href='/inapp-routing/'>Home screen</a>
+            <a href='/inapp-routing/example/3/B#top'>Example screen with long path and #</a>
+            <a href='/inapp-routing/query?a=3&b=2'>Example screen with query parameters</a>
+            <a href='/inapp-routing/animated'>Animated screen</a>
         </nav>
-        <x-route path='/html5-routing/'>
+        <x-route path='/inapp-routing/'>
             <p>This is one section of the site, the default one</p>
             <p>Change route from Javascript:</p>
-            <button onclick='routing.changeTo("/html5-routing/animated")'>Navigate to 'animated'</button>
+            <button onclick='routing.changeTo("/inapp-routing/animated")'>Navigate to 'animated'</button>
         </x-route>
-        <x-route path='/html5-routing/example/3/B'>
+        <x-route path='/inapp-routing/example/3/B'>
             <p>This route example is using a long route and ignoring everything after #</p>
-            <p id='/html5-routing/query'></p>
+            <p id='/inapp-routing/query'></p>
         </x-route>
-        <x-route path='/html5-routing/query' onshow='showParameters()'>
+        <x-route path='/inapp-routing/query' onshow='showParameters()'>
             <p>This route example shows the query string parameters</p>
             <p id='parameters'></p>
         </x-route>
-        <x-route id='animated' path='/html5-routing/animated' onshow='animIn()' onhide='animOut()'>
+        <x-route id='animated' path='/inapp-routing/animated' onshow='animIn()' onhide='animOut()'>
             animated
         </x-route>
     </body>

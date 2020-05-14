@@ -1,9 +1,9 @@
-# html5-routing
+# inapp-routing
 
 Micro library that sets in-app navigation for single page apps, showing or hiding `<x-route>` elements depending on the browser URLs.
 
 ## Example
-https://optimisme.github.io/html5-routing.
+https://optimisme.github.io/inapp-routing.
 
 ## Features
 
@@ -17,7 +17,7 @@ Users can use 'a' tags to show the corresponding `<x-route>` element:
 
 `'<a href="/home">'`
 
-`'<a href="/html5-route/examples/3">'`
+`'<a href="/examples/list">'`
 
 Also from javascript with 'routing.changeTo("/home")'
 
