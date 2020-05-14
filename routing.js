@@ -1,29 +1,24 @@
-class ObjRouteScreen extends HTMLElement {
-    constructor () { super() }
-    static get name () { return 'route-screen' }
-}
-
-if (customElements.get(ObjRouteScreen.name) === undefined) {
-    customElements.define(ObjRouteScreen.name, ObjRouteScreen)
-}
-
 class ObjRouting {
 
     constructor () {
+        this.name = 'route'
         this.defaultRoute = '/home'
         this.route = this.defaultRoute
         this.args = []
         this.handler = this.init.bind(this)
-        this.base = ''
 
         window.addEventListener('load', () => { this.init() })
-        window.addEventListener('popstate', (e) => { this.changeTo(e.state.html.replace(this.base, ''), true); return false })
+        window.addEventListener('popstate', (e) => { this.changeTo(e.state.html, true); return false })
         document.addEventListener('click',  (e) => {
             let element = e.target || e.srcElement
             if (element.tagName == 'A') {
               e.preventDefault()
               e.stopPropagation()
-              this.changeTo(element.href.replace(document.location.origin, ''))
+              if (element.href.charAt(0) === '/') {
+                this.changeTo(element.href.replace(document.location.origin, ''))
+              } else {
+                location.href = element.href
+              }
               return false
             }
         })
@@ -31,9 +26,9 @@ class ObjRouting {
 
     // Change to route defined by 'url' (if necessary)
     init () {
-        let path = document.URL.replace(document.location.origin + this.base, ''),
+        let path = document.URL.replace(document.location.origin, ''),
             cnt = 0,
-            routes = document.querySelectorAll(ObjRouteScreen.name)
+            routes = document.querySelectorAll(this.name)
 
         window.removeEventListener('load', this.handler)
 
@@ -52,7 +47,7 @@ class ObjRouting {
 
         // Set navigator URL
         if (!fromNavigation) {
-            window.history.pushState( { html:  this.base + path }, '', this.base + path)
+            window.history.pushState( { html:  path }, '', path)
         }
         
         // Get real route
@@ -73,10 +68,10 @@ class ObjRouting {
     async showRoute (path) {
         let arr = path.split('/'),
             refRoute = undefined,
-            position = (this.base === '') ? 1 : this.base.split('/').length - 1
+            position = 2
 
         // Hide old route
-        refRoute = document.querySelector(ObjRouteScreen.name + '#' + this.route.substr(1))
+        refRoute = document.querySelector(this.name + '#' + this.route.substr(1))
         if (refRoute.getAttribute('onhide')) {
             await eval(refRoute.getAttribute('onhide'))
         }
@@ -88,7 +83,7 @@ class ObjRouting {
 
         // Set and show new route
         this.route = '/' + arr[position]
-        refRoute = document.querySelector(ObjRouteScreen.name + '#' + this.route.substr(1))
+        refRoute = document.querySelector(this.name + '#' + this.route.substr(1))
         refRoute.style.display = ''
         this.args = arr.splice(position + 1)
         await this.waitNone(refRoute, false)
@@ -119,3 +114,4 @@ class ObjRouting {
 }
 
 var routing = new ObjRouting()
+
