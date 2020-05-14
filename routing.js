@@ -10,10 +10,12 @@ class ObjRouting {
         window.addEventListener('load', () => { this.init() })
         window.addEventListener('popstate', (e) => { this.changeTo(e.state.html, true); return false })
         document.addEventListener('click',  (e) => {
-            let element = e.target || e.srcElement
+            let element = e.target || e.srcElement,
+                path = ''
             if (element.tagName == 'A') {
               e.preventDefault()
               e.stopPropagation()
+              path = element.href.replace(document.location.origin, '')
               if (element.href.charAt(0) === '/') {
                 this.changeTo(element.href.replace(document.location.origin, ''))
               } else {
