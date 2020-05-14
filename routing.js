@@ -57,6 +57,7 @@ class ObjRouting {
         }
 
         // Get 'home' path if necessary
+        console.log(cleanPath)
         if (cleanPath === '/') {
             cleanPath = this.defaultRoute
         }
