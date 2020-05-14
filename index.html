@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset='utf-8'/>
-        <title>route</title>
+        <title>x-route</title>
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap'>
         <script src='routing.js'></script>
@@ -25,9 +25,8 @@
             }
         </style>
         <script>
-            routing.startPosition = 1
-            function setParameters (arr) {
-                document.getElementById('parameters').innerHTML = JSON.stringify(arr)
+            function showParameters () {
+                document.getElementById('parameters').innerHTML = document.URL
             }
             function animIn () {
                 return new Promise((resolve, reject) => {
@@ -45,21 +44,24 @@
             }
         </script>
         <nav>
-            <a href='/html5-routing/'>Home screen</a>
-            <a href='/html5-routing/example/3/B#top'>Example screen with parameters</a>
+            <a href='/html5-routing'>Home screen</a>
+            <a href='/html5-routing/example/3/B#top'>Example screen with long path and #</a>
+            <a href='/html5-routing/query?a=3&b=2'>Example screen with query parameters</a>
             <a href='/html5-routing/animated'>Animated screen</a>
         </nav>
-        <route id='home'>
-            <h1>route custom HTML5 object</h1> 
-            <p>This is one section of the site</p>
-        </route>
-        <route id='example' onshow='setParameters(this.args)'>
-            <p>This is an example screen, the received parameters from the URL:</p>
+        <x-route path='/html5-routing'>
+            <p>This is one section of the site, the default one</p>
+        </x-route>
+        <x-route path='/html5-routing/example/3/B'>
+            <p>This route example is using a long route and ignoring everything after #</p>
+            <p id='/html5-routing/query'></p>
+        </x-route>
+        <x-route path='/html5-routing/query' onshow='showParameters()'>
+            <p>This route example shows the query string parameters</p>
             <p id='parameters'></p>
-            <p>(Everything after # is ingnored)</p>
-        </route>
-        <route id='animated' onshow='animIn()' onhide='animOut()'>
+        </x-route>
+        <x-route path='animated' onshow='animIn()' onhide='animOut()'>
             animated
-        </route>
+        </x-route>
     </body>
 </html>
