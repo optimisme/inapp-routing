@@ -17,7 +17,7 @@ class ObjRouting {
               e.stopPropagation()
               path = element.href.replace(document.location.origin, '')
               if (path.charAt(0) === '/') {
-                this.changeTo(element.href.replace(document.location.origin, ''))
+                this.changeTo(path)
               } else {
                 location.href = element.href
               }
