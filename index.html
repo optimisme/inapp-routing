@@ -56,23 +56,19 @@
             <a href='/html5-routing/animated'>Animated screen</a>
         </nav>
         <x-route path='/html5-routing/'>
-            <h3>Showing route for path: '/html5-routing/'</h3>
             <p>This is one section of the site, the default one</p>
             <p>Change route from Javascript:</p>
             <button onclick='routing.changeTo("/html5-routing/animated")'>Navigate to 'animated'</button>
         </x-route>
         <x-route path='/html5-routing/example/3/B'>
-            <h3>Showing route for path: '/html5-routing/example/3/B'</h3>
             <p>This route example is using a long route and ignoring everything after #</p>
             <p id='/html5-routing/query'></p>
         </x-route>
         <x-route path='/html5-routing/query' onshow='showParameters()'>
-            <h3>Showing route for path: '/html5-routing/query'</h3>
             <p>This route example shows the query string parameters</p>
             <p id='parameters'></p>
         </x-route>
         <x-route id='animated' path='/html5-routing/animated' onshow='animIn()' onhide='animOut()'>
-            <h3>Showing route for path: '/html5-routing/animated'</h3>
             animated
         </x-route>
     </body>
