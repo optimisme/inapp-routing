@@ -2,7 +2,7 @@
 Micro library to add HTML5 routing capabilities to any website
 
 ## Example
-https://optimisme.github.io/html5-routing/.
+https://optimisme.github.io/html5-routing.
 
 ## Features
 
