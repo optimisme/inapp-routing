@@ -100,16 +100,14 @@ class ObjRouting {
             let style = window.getComputedStyle(ref),
                 now = style.getPropertyValue('display'),
                 condition = type ? now === 'none' : now !== 'none'
-                
-            while (!condition) {
+            if (condition) {
+                resolve()
+            } else {
                 await this.promiseWait(1)
-                now = style.getPropertyValue('display')
-                condition = type ? now === 'none' : now !== 'none'
+                await this.waitNone(ref, type)
             }
-
-            resolve()
         })
-    }
+    } 
 
     promiseWait (time) {
         return new Promise((resolve, reject) => {
