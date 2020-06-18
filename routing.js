@@ -9,8 +9,8 @@ class ObjRouting {
 
         window.addEventListener('load', this.handler)
         window.addEventListener('popstate', (e) => { this.changeTo(e.state.html, true); return false })
-        document.addEventListener('click',  this.linkEvent);
-        document.addEventListener('tap', this.linkEvent);
+        document.addEventListener('click',  (e) => { this.linkEvent(e) });
+        document.addEventListener('tap', (e) => { this.linkEvent(e) });
     }
 
     linkEvent (e) {
