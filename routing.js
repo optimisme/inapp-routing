@@ -33,7 +33,7 @@ class ObjRouting {
     init () {
         let path = document.URL.replace(document.location.origin, ''),
             cnt = 0,
-            routes = document.querySelectorAll(this.tagName) //
+            routes = document.querySelectorAll(this.tagName)
 
         window.removeEventListener('load', this.handler)
 
