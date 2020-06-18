@@ -9,21 +9,24 @@ class ObjRouting {
 
         window.addEventListener('load', this.handler)
         window.addEventListener('popstate', (e) => { this.changeTo(e.state.html, true); return false })
-        document.addEventListener('click',  (e) => {
-            let element = e.target || e.srcElement,
-                path = ''
-            if (element.tagName == 'A') {
-              e.preventDefault()
-              e.stopPropagation()
-              path = element.href.replace(document.location.origin, '')
-              if (path.charAt(0) === '/') {
-                this.changeTo(path)
-              } else {
-                location.href = element.href
-              }
-              return false
-            }
-        })
+        document.addEventListener('click',  this.linkEvent);
+        document.addEventListener('tap', this.linkEvent);
+    }
+
+    linkEvent (e) {
+        let element = e.target || e.srcElement,
+            path = ''
+        if (element.tagName == 'A') {
+          e.preventDefault()
+          e.stopPropagation()
+          path = element.href.replace(document.location.origin, '')
+          if (path.charAt(0) === '/') {
+            this.changeTo(path)
+          } else {
+            location.href = element.href
+          }
+          return false
+        }
     }
 
     // Change to route defined by 'url' (if necessary)
@@ -53,7 +56,7 @@ class ObjRouting {
         if (!fromNavigation) {
             window.history.pushState( { html:  path }, '', path)
         }
-        
+
         // Get real route
         if (queryPos !== -1) {
             cleanPath = path.substr(0, queryPos)
@@ -100,7 +103,7 @@ class ObjRouting {
             let style = window.getComputedStyle(ref),
                 now = style.getPropertyValue('display'),
                 condition = type ? now === 'none' : now !== 'none'
-                
+
             while (!condition) {
                 await this.promiseWait(1)
                 now = style.getPropertyValue('display')
