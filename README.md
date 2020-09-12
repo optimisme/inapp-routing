@@ -21,7 +21,7 @@ Users can use 'a' tags to show the corresponding `<x-route>` element:
 
 Also from javascript with 'routing.changeTo("/home")'
 
-If the 'path' is not listed at any `<x-route>` element, then the regular out of app navigation is used.
+If the 'path' is not listed at any `<x-route>` element, then the regular navigation is used.
 
 ## How to use it
 
