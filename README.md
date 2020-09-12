@@ -25,11 +25,11 @@ If the 'path' is not listed at any `<x-route>` element, then the regular navigat
 
 ## How to use it
 
-Download and this library from your own server:
+Download and use this library from your own server:
 
 `<script src='routing.js'></script>`
 
-Use the custom element named `<x-route>`:
+Use the custom element named `<x-route>` for 'in app' routes:
 
 `<x-route path='/home'>Home screen contents</x-route>`
 
