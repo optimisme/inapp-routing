@@ -15,18 +15,47 @@ class ObjRouting {
 
     linkEvent (e) {
         let element = e.target || e.srcElement,
-            path = ''
+            path = '',
+            routes = [],
+            cleanPath = ''
+
         if (element.tagName == 'A') {
           e.preventDefault()
           e.stopPropagation()
           path = element.href.replace(document.location.origin, '')
           if (path.charAt(0) === '/') {
-            this.changeTo(path)
+            routes = (Array.from(document.querySelectorAll(this.tagName))).map((e) => { return this.getCleanPath(e.getAttribute('path')); })
+            cleanPath = this.getCleanPath(path)
+            if (routes.indexOf(cleanPath) !== -1) {
+                this.changeTo(path)
+            } else {
+                location.href = element.href
+            }
           } else {
             location.href = element.href
           }
           return false
         }
+    }
+
+    getCleanPath (path) {
+            let queryPos = path.indexOf('?'),
+            hashPos = 0,
+            cleanPath = path
+
+        // Get real route
+        if (queryPos !== -1) {
+            cleanPath = path.substr(0, queryPos)
+        }
+        hashPos = cleanPath.indexOf('#')
+        if (hashPos !== -1) {
+            cleanPath = cleanPath.substr(0, hashPos)
+        }
+        if (cleanPath === '/') {
+            cleanPath = this.defaultRoute
+        }
+
+        return cleanPath
     }
 
     // Change to route defined by 'url' (if necessary)
@@ -48,26 +77,15 @@ class ObjRouting {
 
     // Change route
     async changeTo (path, fromNavigation) {
-        let queryPos = path.indexOf('?'),
-            hashPos = 0,
-            cleanPath = path
-
+        let cleanPath = path
+        
         // Set navigator URL
         if (!fromNavigation) {
             window.history.pushState( { html:  path }, '', path)
         }
-
-        // Get real route
-        if (queryPos !== -1) {
-            cleanPath = path.substr(0, queryPos)
-        }
-        hashPos = cleanPath.indexOf('#')
-        if (hashPos !== -1) {
-            cleanPath = cleanPath.substr(0, hashPos)
-        }
-        if (cleanPath === '/') {
-            cleanPath = this.defaultRoute
-        }
+    
+        // Remove '?' or '#' from path
+        cleanPath = this.getCleanPath(path)
 
         // Show route changes
         await this.showRoute(cleanPath)
@@ -122,3 +140,4 @@ class ObjRouting {
 }
 
 var routing = new ObjRouting()
+a = []
