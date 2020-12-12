@@ -37,7 +37,7 @@ Use the custom element named `<x-route>` for 'in app' routes:
 
 It is an "HTMLUnknownElement" without any custom definition
 
-Each `<x-route>` element contains the html source of one navigation screen of the application
+Each `<x-route>` element has the calls to run when that route is called or exited
 
 The path of each `<x-route>` element matches its URL when shown (for example path='/home' is the route '/home')
 
