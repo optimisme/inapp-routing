@@ -1,6 +1,6 @@
 # inapp-routing
 
-Micro library that sets in-app navigation for single page apps, degine `<x-route>` elements depending on the browser URLs with in-app actions.
+Micro library that sets in-app navigation for single page apps, defines `<x-route>` elements depending on the browser URLs with in-app actions
 
 ## Example
 https://optimisme.github.io/inapp-routing.
