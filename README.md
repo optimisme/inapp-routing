@@ -31,7 +31,7 @@ Download and use this library from your own server:
 
 Use the custom element named `<x-route>` for 'in app' routes:
 
-`<x-route path='/home' />`
+`<x-route path='/home'></x-route>`
 
 ## Benefits
 
@@ -51,10 +51,10 @@ Finally, `<x-route>` elements can define two attributes:
 
 **'oncall'** source will be called when an `<x-route>` element is requested 
 
-`<x-route path='home' oncall='console.log("Show home")' />`
+`<x-route path='home' oncall='console.log("Show home")'></x-route>`
 
 **'onexit'** source will be called before that `<x-route>` element is 'replaced' by another route
 
-`<x-route path='home' onexit='console.log("Hide home")' />`
+`<x-route path='home' onexit='console.log("Hide home")'></x-route>`
 
 If the return value of these functions is a 'Promise', the library will wait until the call is resolved.
