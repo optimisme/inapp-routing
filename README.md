@@ -1,6 +1,6 @@
 # inapp-routing
 
-Micro library that sets in-app navigation for single page apps, showing or hiding `<x-route>` elements depending on the browser URLs.
+Micro library that sets in-app navigation for single page apps, degine `<x-route>` elements depending on the browser URLs with in-app actions.
 
 ## Example
 https://optimisme.github.io/inapp-routing.
@@ -31,7 +31,7 @@ Download and use this library from your own server:
 
 Use the custom element named `<x-route>` for 'in app' routes:
 
-`<x-route path='/home'>Home screen contents</x-route>`
+`<x-route path='/home' />`
 
 ## Benefits
 
@@ -43,23 +43,18 @@ The path of each `<x-route>` element matches its URL when shown (for example pat
 
 The library automatically handles the window.history states and sets the 'display' property of each `<x-route>` element to 'none' if the route doesn't match
 
-By default, the '/' route will show the first `<x-route>` defined
+By default, the '/' route will call the first `<x-route>` defined
 
-## Attributes 'onshow' and 'onhide'
+## Attributes 'oncall' and 'onexit'
 
 Finally, `<x-route>` elements can define two attributes:
 
-**'onshow'** source will be called after that `<x-route>` element is shown 
-(its 'style.display' property will be set to its default value and then the function is called)
+**'oncall'** source will be called when an `<x-route>` element is requested 
 
-`<x-route path='home' onshow='console.log("Show home")'>Home screen contents</x-route>`
+`<x-route path='home' oncall='console.log("Show home")' />`
 
-**'onhide'** source will be called before that `<x-route>` element is hided (the function is called, and then its 'style.display' property will be set to 'none')
+**'onexit'** source will be called before that `<x-route>` element is 'replaced' by another route
 
-`<x-route path='home' onhide='console.log("Hide home")'>Home screen contents</x-route>`
+`<x-route path='home' onexit='console.log("Hide home")' />`
 
-If the return value of these functions is a 'Promise', the library will wait until the call is resolved (see the animated example).
-
----
-
-**NOTE**: Do not set 'display: none' for `<x-route>` elements as a default value, or the library will hang
+If the return value of these functions is a 'Promise', the library will wait until the call is resolved.
