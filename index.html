@@ -18,63 +18,37 @@
                 padding-bottom: 1.5em;
                 width: 100%;
             }
-            #animated {
-                background-color: grey;
-                display: block;
-                transform: translateX(-300px);
-                transition: transform 0.5s ease-in;
-                will-change: transform;
-                width: 300px;
-            }
         </style>
         <script>
-            function showParameters () {
+            function callRoute(...args) {
+                console.log(`Show route with args "${args[0]}"`)
+                console.log(getParameters())
+            }
+
+            function exitRoute(...args) {
+                console.log(`Exit route`)
+            }
+
+            function getParameters () {
                 let path = document.URL,
                     position = path.indexOf('?'),
-                    parameters = path.substring(position + 1).split('&'),
-                    json = JSON.parse('{' + parameters.map((v) => { let arr = v.split('='); return '"' + arr[0] + '":"' + arr[1] + '"' }).join(',') + '}')
+                    query = path.substring(position + 1),
+                    queryArr = query.split('#'),
+                    parameters = (queryArr.length == 1) ? {} : JSON.parse('{' + (queryArr[0].split('&')).map((v) => { let arr = v.split('='); return '"' + arr[0] + '":"' + arr[1] + '"' }).join(',') + '}'),
+                    fragment = (queryArr.length < 2) ? '' : queryArr[1],
+                    obj = {
+                        parameters: parameters,
+                        fragment: fragment
+                    }
 
-                console.log(json)
-                document.getElementById('parameters').innerHTML = JSON.stringify(json)
-            }
-            function animIn () {
-                return new Promise((resolve, reject) => {
-                    let ref = document.getElementById('animated')
-                    ref.style.transform = 'translateX(0)'
-                    setTimeout(() => { resolve() }, 500)
-                })
-            }
-            function animOut () {
-                return new Promise((resolve, reject) => {
-                    let ref = document.getElementById('animated')
-                    ref.style.transform = ''
-                    setTimeout(() => { resolve() }, 500)
-                })
+                return obj;
             }
         </script>
+        <x-route path='/' oncall='callRoute("hello")' />
+        <x-route path='/example/3/B' oncall='callRoute("goodbye")' onexit='exitRoute()' />
         <nav>
-            <a href='/inapp-routing/'>Home screen</a>
-            <a href='/inapp-routing/example/3/B#top'>Example screen with long path and #</a>
-            <a href='/inapp-routing/query?a=3&b=2'>Example screen with query parameters</a>
-            <a href='/inapp-routing/animated'>Animated screen</a>
+            <a href='/'>Example 1</a>
+            <a href='/example/3/B?a=3&b=4#top'>Example 2</a>
         </nav>
-        <x-route path='/inapp-routing/'>
-            <p>This is one section of the site, the default one</p>
-            <p>Change route from Javascript:</p>
-            <button onclick='routing.changeTo("/inapp-routing/animated")'>Navigate to 'animated'</button>
-            <br/><br/><br/>
-            <a href='/other.html'>Regular local path on the server</a> (out of app route, does not work on the example from github)
-        </x-route>
-        <x-route path='/inapp-routing/example/3/B'>
-            <p>This route example is using a long route and ignoring everything after #</p>
-            <p id='/inapp-routing/query'></p>
-        </x-route>
-        <x-route path='/inapp-routing/query' onshow='showParameters()'>
-            <p>This route example shows the query string parameters</p>
-            <p id='parameters'></p>
-        </x-route>
-        <x-route id='animated' path='/inapp-routing/animated' onshow='animIn()' onhide='animOut()'>
-            animated
-        </x-route>
     </body>
 </html>
